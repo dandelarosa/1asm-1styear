@@ -1,0 +1,22 @@
+{
+  "name": "1asm-1styear",
+  "version": "1.0.0",
+  "description": "David's World 1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://dandelarosa@github.com/dandelarosa/1asm-1styear.git"
+  },
+  "author": "Dan Dela Rosa",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/dandelarosa/1asm-1styear/issues"
+  },
+  "homepage": "https://github.com/dandelarosa/1asm-1styear#readme",
+  "dependencies": {
+    "phaser": "^3.3.0"
+  }
+}
