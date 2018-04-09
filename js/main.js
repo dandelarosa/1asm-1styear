@@ -2,12 +2,6 @@ var config = {
   type: Phaser.AUTO,
   width: 800,
   height: 480,
-  physics: {
-    default: 'arcade',
-    arcade: {
-      debug: false
-    }
-  },
   scene: {
     preload: preload,
     create: create,
@@ -22,8 +16,17 @@ function preload() {
 }
 
 function create() {
-  player = this.physics.add.sprite(150, 200, 'box32');
+  this.player = this.add.sprite(150, 200, 'box32');
 }
 
 function update() {
+  cursors = this.input.keyboard.createCursorKeys();
+  if (cursors.left.isDown)
+  {
+    this.player.x -= 4;
+  }
+  else if (cursors.right.isDown)
+  {
+    this.player.x += 4;
+  }
 }
