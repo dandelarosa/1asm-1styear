@@ -14,7 +14,7 @@ var game = new Phaser.Game(config);
 function preload() {
   this.load.image('tiles', 'assets/tilemaps/tiles/tileset.png');
   this.load.tilemapTiledJSON('level1', 'assets/tilemaps/maps/level1.json');
-  
+
   this.load.image('box32', 'assets/box32.png');
 }
 
@@ -24,6 +24,9 @@ function create() {
   var layer = map.createStaticLayer(0, tiles, 0, 0);
 
   this.player = this.add.sprite(150, 200, 'box32');
+
+  this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+  this.cameras.main.startFollow(this.player);
 }
 
 function update() {
