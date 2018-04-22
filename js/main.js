@@ -40,22 +40,38 @@ function create() {
 
 function update() {
   cursors = this.input.keyboard.createCursorKeys();
-
-  if (cursors.left.isDown)
-  {
-    this.player.dx = -4;
-  }
-  else if (cursors.right.isDown)
-  {
-    this.player.dx = 4;
-  }
-  else if (cursors.up.isDown)
+  if (cursors.up.isDown)
   {
     this.player.dy = -4;
   }
   else if (cursors.down.isDown)
   {
     this.player.dy = 4;
+  }
+
+  var maxSpeed = 20.0;
+  var acceleration = 7.0;
+  var friction = 0.01;
+  if (cursors.left.isDown) {
+    if (this.player.dx < -maxSpeed) {
+      this.player.dx *= friction;
+    }
+    else {
+      this.player.dx -= acceleration;
+      this.player.dx = Math.max(this.player.dx, -maxSpeed);
+    }
+  }
+  else if (cursors.right.isDown) {
+    if (this.player.dx > maxSpeed) {
+      this.player.dx *= friction;
+    }
+    else {
+      this.player.dx += acceleration;
+      this.player.dx = Math.min(this.player.dx, maxSpeed);
+    }
+  }
+  else {
+    this.player.dx *= friction;
   }
 
   this.gridCollider.handleCollisionsWith(this.player);
