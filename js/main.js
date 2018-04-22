@@ -79,6 +79,17 @@ function update() {
 
   this.gridCollider.handleCollisionsWith(this.player);
 
+  // Level collisions
+  if (this.player.x < 0) {
+    this.player.x = 0;
+    this.player.dx = 0;
+  }
+  // Needs a better way of getting the level width
+  else if (this.player.x > this.grid.numCols * TILE_WIDTH - this.player.width) {
+    this.player.x = this.grid.numCols * TILE_WIDTH - this.player.width;
+    this.player.dx = 0;
+  }
+
   this.player.x += this.player.dx;
   this.player.y += this.player.dy;
 }
