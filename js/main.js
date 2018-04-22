@@ -33,6 +33,7 @@ function create() {
   this.player.dx = 0;
   this.player.dy = 0;
   this.player.setOrigin(0, 0);
+  this.player.alreadyJumped = false;
 
   this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
   this.cameras.main.startFollow(this.player);
@@ -66,15 +67,20 @@ function update() {
     this.player.dx *= friction;
   }
 
-  if (cursors.up.isDown && this.player.onGround) {
-    this.player.dy = -20;
+  if (this.player.onGround && cursors.space.isDown && this.player.alreadyJumped == false) {
+    this.player.dy = -25;
+    this.player.alreadyJumped = true;
   }
-  else if (!this.player.onGround) {
-    this.player.dy += 1.75;
+  else {
+    this.player.dy += 2.25;
     // cheap test to ensure can't fall through floor
     if (this.player.dy > 10) {
       this.player.dy = 10;
     }
+  }
+
+  if (cursors.space.isUp) {
+    this.player.alreadyJumped = false;
   }
 
   this.gridCollider.handleCollisionsWith(this.player);
