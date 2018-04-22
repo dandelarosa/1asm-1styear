@@ -12,6 +12,8 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
+  this.load.image('bg', 'assets/bg.png');
+
   this.load.image('tiles', 'assets/tilemaps/tiles/tileset.png');
   this.load.tilemapTiledJSON('level1', 'assets/tilemaps/maps/level1.json');
 
@@ -19,6 +21,8 @@ function preload() {
 }
 
 function create() {
+  this.add.image(400, 240, 'bg');
+
   var map = this.make.tilemap({ key: 'level1' });
   var tiles = map.addTilesetImage('tileset', 'tiles');
   var layer = map.createStaticLayer(0, tiles, 0, 0);
