@@ -40,16 +40,8 @@ function create() {
 
 function update() {
   cursors = this.input.keyboard.createCursorKeys();
-  if (cursors.up.isDown)
-  {
-    this.player.dy = -4;
-  }
-  else if (cursors.down.isDown)
-  {
-    this.player.dy = 4;
-  }
 
-  var maxSpeed = 20.0;
+  var maxSpeed = 10.0;
   var acceleration = 7.0;
   var friction = 0.01;
   if (cursors.left.isDown) {
@@ -74,12 +66,19 @@ function update() {
     this.player.dx *= friction;
   }
 
+  if (cursors.up.isDown && this.player.onGround) {
+    this.player.dy = -20;
+  }
+  else if (!this.player.onGround) {
+    this.player.dy += 1.75;
+    // cheap test to ensure can't fall through floor
+    if (this.player.dy > 10) {
+      this.player.dy = 10;
+    }
+  }
+
   this.gridCollider.handleCollisionsWith(this.player);
 
   this.player.x += this.player.dx;
   this.player.y += this.player.dy;
-
-  // Reset velocity for now
-  this.player.dx = 0;
-  this.player.dy = 0;
 }
