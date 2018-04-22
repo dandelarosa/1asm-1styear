@@ -28,7 +28,7 @@ function create() {
   this.grid = new Grid2D(rawTileArray, numCols);
   this.gridCollider = new GridCollider(this.grid);
   
-  this.player = this.add.sprite(150, 200, 'box32');
+  this.player = this.add.sprite(384, 320, 'box32');
   // MUST initialize values (or first frame's physics will break)
   this.player.dx = 0;
   this.player.dy = 0;
