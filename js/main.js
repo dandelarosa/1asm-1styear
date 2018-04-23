@@ -41,10 +41,19 @@ function create() {
 
   this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
   this.cameras.main.startFollow(this.player);
+
+  this.time = 3600; // 60 per second
+  this.score = 0;
+  this.timeText = this.add.text(16, 16, 'time: ' + Math.ceil(this.time / 60), { fontSize: '32px', fill: '#000' });
+  this.scoreText = this.add.text(616, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#000' });
 }
 
 function update() {
   cursors = this.input.keyboard.createCursorKeys();
+
+  if (this.time == 0) {
+    return;
+  }
 
   var maxSpeed = 10.0;
   var acceleration = 7.0;
@@ -102,4 +111,8 @@ function update() {
 
   this.player.x += this.player.dx;
   this.player.y += this.player.dy;
+
+  this.time = this.time - 1;
+  this.timeText.setText('time: ' + Math.ceil(this.time / 60));
+  this.scoreText.setText('score: ' + this.score);
 }
