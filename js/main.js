@@ -64,12 +64,14 @@ function create() {
   this.score = 0;
   this.timeText = this.add.text(16, 16, 'time: ' + Math.ceil(this.time / 60), { fontSize: '32px', fill: '#000' });
   this.scoreText = this.add.text(580, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#000' });
+  this.gameOverText = this.add.text(305, 190, '', { fontSize: '32px', fill: '#000' });
 }
 
 function update() {
   cursors = this.input.keyboard.createCursorKeys();
 
   if (this.time == 0) {
+    this.gameOverText.setText('Time\'s Up!');
     return;
   }
 
