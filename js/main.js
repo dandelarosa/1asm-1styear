@@ -57,10 +57,12 @@ function create() {
   this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
   this.cameras.main.startFollow(this.player);
 
+  this.objectCollider = new ObjectCollider();
+
   this.time = 3600; // 60 per second
   this.score = 0;
   this.timeText = this.add.text(16, 16, 'time: ' + Math.ceil(this.time / 60), { fontSize: '32px', fill: '#000' });
-  this.scoreText = this.add.text(616, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#000' });
+  this.scoreText = this.add.text(580, 16, 'score: ' + this.score, { fontSize: '32px', fill: '#000' });
 }
 
 function update() {
@@ -126,6 +128,13 @@ function update() {
 
   this.player.x += this.player.dx;
   this.player.y += this.player.dy;
+
+  if (this.objectCollider.objectsCollide(this.player, this.cookie)) {
+    var randomCookieIndex = Math.floor(Math.random() * this.cookieLocations.length);
+    this.cookie.x = this.cookieLocations[randomCookieIndex].x;
+    this.cookie.y = this.cookieLocations[randomCookieIndex].y;
+    this.score += 100;
+  }
 
   this.time = this.time - 1;
   this.timeText.setText('time: ' + Math.ceil(this.time / 60));
