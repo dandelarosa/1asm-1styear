@@ -17,7 +17,8 @@ function preload() {
   this.load.image('tiles', 'assets/tilemaps/tiles/tileset.png');
   this.load.tilemapTiledJSON('level1', 'assets/tilemaps/maps/level1.json');
 
-  this.load.image('box32', 'assets/box32.png');
+  this.load.image('player-left', 'assets/player-left.png');
+  this.load.image('player-right', 'assets/player-right.png');
   this.load.image('cookie', 'assets/cookie.png');
 }
 
@@ -47,7 +48,7 @@ function create() {
   this.cookie = this.add.sprite(cookieX, cookieY, 'cookie');
   this.cookie.setOrigin(0, 0);
 
-  this.player = this.add.sprite(384, 320, 'box32');
+  this.player = this.add.sprite(384, 320, 'player-right');
   // MUST initialize values (or first frame's physics will break)
   this.player.dx = 0;
   this.player.dy = 0;
@@ -76,6 +77,7 @@ function update() {
   var acceleration = 7.0;
   var friction = 0.01;
   if (cursors.left.isDown) {
+    this.player.setTexture('player-left');
     if (this.player.dx < -maxSpeed) {
       this.player.dx *= friction;
     }
@@ -85,6 +87,7 @@ function update() {
     }
   }
   else if (cursors.right.isDown) {
+    this.player.setTexture('player-right');
     if (this.player.dx > maxSpeed) {
       this.player.dx *= friction;
     }
