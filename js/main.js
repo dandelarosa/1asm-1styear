@@ -33,7 +33,18 @@ function create() {
   this.grid = new Grid2D(rawTileArray, numCols);
   this.gridCollider = new GridCollider(this.grid);
   
-  this.cookie = this.add.sprite(120, 120, 'cookie');
+  this.cookieLocations = [
+    {x: 64, y: 160},
+    {x: 224, y: 32},
+    {x: 384, y: 32},
+    {x: 544, y: 32},
+    {x: 704, y: 160},
+    {x: 384, y: 224}
+  ];
+  var randomCookieIndex = Math.floor(Math.random() * this.cookieLocations.length);
+  var cookieX = this.cookieLocations[randomCookieIndex].x;
+  var cookieY = this.cookieLocations[randomCookieIndex].y;
+  this.cookie = this.add.sprite(cookieX, cookieY, 'cookie');
   this.cookie.setOrigin(0, 0);
 
   this.player = this.add.sprite(384, 320, 'box32');
