@@ -18,6 +18,7 @@ function preload() {
   this.load.tilemapTiledJSON('level1', 'assets/tilemaps/maps/level1.json');
 
   this.load.image('box32', 'assets/box32.png');
+  this.load.image('cookie', 'assets/cookie.png');
 }
 
 function create() {
@@ -32,6 +33,9 @@ function create() {
   this.grid = new Grid2D(rawTileArray, numCols);
   this.gridCollider = new GridCollider(this.grid);
   
+  this.cookie = this.add.sprite(120, 120, 'cookie');
+  this.cookie.setOrigin(0, 0);
+
   this.player = this.add.sprite(384, 320, 'box32');
   // MUST initialize values (or first frame's physics will break)
   this.player.dx = 0;
